@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  
+}
+.input {
+  width: 170px;
+  border-radius: 5px;
+  padding: 7px;
+  outline: 1.5px solid #333;
+  border: none;
+}
+.saveBtn {
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: #eee;
+  padding: 10px;
+  border-radius: 15px;
+  transition-duration: 250ms;
+  transition-delay: 50ms;
+  &:hover {
+    transform: scale(1.05);
+  }
+}

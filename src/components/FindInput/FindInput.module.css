@@ -1,0 +1,19 @@
+.label {
+  font-family: "Verdana";
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  input {
+    width: 190px;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    outline: 1.5px solid #333;
+    border: none;
+  }
+}

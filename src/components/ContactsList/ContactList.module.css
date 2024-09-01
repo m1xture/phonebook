@@ -1,0 +1,33 @@
+.contacts {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  h2 {
+    margin: 0;
+    font-family: "Verdana";
+  }
+  p {
+    font-size: 13px;
+    font-family: "Verdana";
+  }
+  button {
+    border-radius: 5px;
+    border: none;
+    outline: 1px solid #eee;
+    background-color: transparent;
+    color: #eee;
+    padding: 5px;
+    display: block;
+    margin-left: auto;
+    transition: all 300ms 60ms;
+    &:hover {
+      cursor: pointer;
+      background-color: #eee;
+      outline: none;
+      color: #333;
+    }
+  }
+}
