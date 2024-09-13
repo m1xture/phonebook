@@ -4,6 +4,7 @@ import css from "./ContactList.module.css";
 
 class ContactsList extends Component {
   render() {
+    console.log(this.props.contacts);
     return (
       <ul className={css.contacts}>
         {this.props.contacts.map((contact) => (

@@ -6,21 +6,41 @@ import { nanoid } from "nanoid";
 
 class Wrapper extends Component {
   state = {
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
+    contacts: [],
     foundContacts: [],
     filter: "",
   };
+  componentDidMount() {
+    try {
+      if (JSON.parse(localStorage.getItem("contacts"))) {
+        this.setState({
+          contacts: JSON.parse(localStorage.getItem("contacts")),
+        });
+      } else {
+        localStorage.setItem(
+          "contacts",
+          JSON.stringify([
+            { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+            { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+            { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+            { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+          ])
+        );
+        this.setState({
+          contacts: JSON.parse(localStorage.getItem("contacts")),
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   deleteFn = (e) => {
     const id = e.target.closest("li").id;
     const deletedArr = this.state.contacts.filter(
       (contacts) => contacts.id !== id
     );
     this.setState({ contacts: deletedArr });
+    localStorage.setItem("contacts", JSON.stringify(deletedArr));
   };
   saveFn = (e) => {
     e.preventDefault();
@@ -33,6 +53,10 @@ class Wrapper extends Component {
       return console.log("validation failed");
     }
     this.setState({ contacts: [...this.state.contacts, newContact] });
+    localStorage.setItem(
+      "contacts",
+      JSON.stringify([...this.state.contacts, newContact])
+    );
     e.target.reset();
   };
   updateValueState = (e) => {
