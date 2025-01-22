@@ -1,6 +1,9 @@
 // import { Component } from "react";
+import { useCallback } from "react";
 import css from "./AddForm.module.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "../../redux/actions";
+import { nanoid } from "nanoid";
 // class AddForm extends Component {
 //   render() {
 //     return (
@@ -27,7 +30,23 @@ import css from "./AddForm.module.css";
 //   }
 // }
 
-const AddForm = ({ saveFn }) => {
+const AddForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+  const saveFn = (e) => {
+    e.preventDefault();
+    const newContact = {
+      id: nanoid(),
+      name: e.target.name.value.trim(),
+      number: e.target.tel.value.trim(),
+    };
+    if (newContact.number.length < 4 || newContact.name.length < 3) {
+      return console.log("validation failed");
+    }
+    dispatch(addContact(newContact));
+    localStorage.setItem("contacts", JSON.stringify([...contacts, newContact]));
+    e.target.reset();
+  };
   return (
     <form onSubmit={saveFn} className={css.form}>
       <input
