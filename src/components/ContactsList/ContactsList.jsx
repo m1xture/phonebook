@@ -5,7 +5,7 @@ import css from "./ContactList.module.css";
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/actions";
+import { addContact } from "../../redux/contacts/contactsSlice";
 // class ContactsList extends Component {
 //   render() {
 //     console.log(this.props.contacts);
@@ -45,7 +45,7 @@ const ContactsList = ({ deleteFn }) => {
     console.log(foundContacts);
   }, []);
   return (
-    <ul className={css.contacts}>
+    <ul className="flex justify-center gap-10 items-center">
       {foundContacts.length === 0
         ? contacts.map((contact) => (
             <Contact

@@ -153,8 +153,8 @@ const Wrapper = () => {
   return (
     <>
       <AddForm />
-      <FindInput findContactFn={updateValueState} />
-      <ContactsList deleteFn={deleteFn} />
+      <FindInput />
+      <ContactsList />
     </>
   );
 };

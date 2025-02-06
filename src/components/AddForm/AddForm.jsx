@@ -2,7 +2,7 @@
 import { useCallback } from "react";
 import css from "./AddForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/actions";
+import { addContact } from "../../redux/contacts/contactsSlice";
 import { nanoid } from "nanoid";
 // class AddForm extends Component {
 //   render() {
@@ -48,22 +48,28 @@ const AddForm = () => {
     e.target.reset();
   };
   return (
-    <form onSubmit={saveFn} className={css.form}>
+    <form
+      onSubmit={saveFn}
+      className="flex flex-col items-center justify-center gap-5"
+    >
       <input
-        placeholder="Enter contact name here"
+        placeholder="Name"
         type="text"
         name="name"
         required
-        className={css.input}
+        className="w-[11.5vw] rounded-md p-2 placeholder:text-sm bg-slate-700 text-slate-300"
       />
       <input
-        placeholder="Enter contact number here"
+        placeholder="Phone number"
         type="tel"
         name="tel"
         required
-        className={css.input}
+        className="w-[11.5vw] rounded-md p-2 placeholder:text-sm bg-slate-700 text-slate-300"
       />
-      <button type="submit" className={css.saveBtn}>
+      <button
+        type="submit"
+        className="w-28 bg-slate-500 p-1 rounded-lg text-slate-300"
+      >
         Save contact
       </button>
     </form>

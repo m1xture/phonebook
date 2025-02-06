@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import css from "./FindInput.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter, setFoundContacts } from "../../redux/actions";
+import { setFilter } from "../../redux/filter/filterSlice";
+import { setFoundContacts } from "../../redux/foundContacts/foundContactsSlice";
 
 const FindInput = () => {
   const contacts = useSelector((state) => state.contacts);
@@ -18,9 +19,14 @@ const FindInput = () => {
     dispatch(setFoundContacts(foundArr));
   };
   return (
-    <label className={css.label}>
+    <label className="text-slate-300 flex flex-col justify-center items-center mt-10 mb-16 text-lg">
       Find contacts by the name
-      <input type="text" onChange={findContactFn} />
+      <input
+        type="text"
+        onChange={findContactFn}
+        placeholder="Contact name"
+        className="mt-5 bg-slate-700 rounded-md p-1 placeholder:text-md focus:outline-none"
+      />
     </label>
   );
 };
