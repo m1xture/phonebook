@@ -32,7 +32,7 @@ import { nanoid } from "nanoid";
 
 const AddForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts.contacts);
   const saveFn = (e) => {
     e.preventDefault();
     const newContact = {
@@ -41,10 +41,11 @@ const AddForm = () => {
       number: e.target.tel.value.trim(),
     };
     if (newContact.number.length < 4 || newContact.name.length < 3) {
-      return console.log("validation failed");
+      console.log("validation failed");
+      return;
     }
     dispatch(addContact(newContact));
-    localStorage.setItem("contacts", JSON.stringify([...contacts, newContact]));
+    // localStorage.setItem("contacts", JSON.stringify([...contacts, newContact]));
     e.target.reset();
   };
   return (

@@ -5,7 +5,7 @@ import { setFilter } from "../../redux/filter/filterSlice";
 import { setFoundContacts } from "../../redux/foundContacts/foundContactsSlice";
 
 const FindInput = () => {
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts.contacts);
   const dispatch = useDispatch();
   const findContactFn = (e) => {
     const value = e.target.value.toLowerCase();

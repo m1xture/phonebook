@@ -14,11 +14,11 @@ import { setFullContacts } from "../../redux/contacts/contactsSlice";
 
 const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts.contacts);
   const deleteFn = (e) => {
     const id = e.target.closest("li").id;
     const deletedArr = contacts.filter((contacts) => contacts.id !== id);
-    localStorage.setItem("contacts", JSON.stringify(deletedArr));
+    // localStorage.setItem("contacts", JSON.stringify(deletedArr));
     dispatch(setFullContacts(deletedArr));
   };
   return (
