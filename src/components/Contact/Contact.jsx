@@ -1,8 +1,8 @@
 // import { Component } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import css from "./Contact.module.css";
-import { setFullContacts } from "../../redux/contacts/contactsSlice";
-
+// import { setFullContacts } from "../../redux/contacts/contactsSlice";
+import { deleteContact } from "../../redux/contacts/operations";
 // class Contact extends Component {
 //   render() {
 //     const { id, name, number } = this.props.contact;
@@ -17,9 +17,9 @@ const Contact = ({ contact: { id, name, number } }) => {
   const contacts = useSelector((state) => state.contacts.contacts);
   const deleteFn = (e) => {
     const id = e.target.closest("li").id;
-    const deletedArr = contacts.filter((contacts) => contacts.id !== id);
+
     // localStorage.setItem("contacts", JSON.stringify(deletedArr));
-    dispatch(setFullContacts(deletedArr));
+    dispatch(deleteContact({ id }));
   };
   return (
     <li id={id} className="bg-slate-700 rounded-md p-4">

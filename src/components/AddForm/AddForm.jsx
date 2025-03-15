@@ -2,8 +2,10 @@
 import { useCallback } from "react";
 import css from "./AddForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/contacts/contactsSlice";
+// import { addContact } from "../../redux/contacts/contactsSlice";
+import { addContact } from "../../redux/contacts/operations";
 import { nanoid } from "nanoid";
+import { selectContacts } from "../../redux/contacts/selectors";
 // class AddForm extends Component {
 //   render() {
 //     return (
@@ -32,7 +34,7 @@ import { nanoid } from "nanoid";
 
 const AddForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.contacts);
+  // const contacts = useSelector(selectContacts);
   const saveFn = (e) => {
     e.preventDefault();
     const newContact = {

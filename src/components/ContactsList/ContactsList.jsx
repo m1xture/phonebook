@@ -5,7 +5,10 @@ import css from "./ContactList.module.css";
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/contactsSlice";
+// import { addContact } from "../../redux/contacts/contactsSlice";
+import { addContact, fetchContacts } from "../../redux/contacts/operations";
+import { selectContacts } from "../../redux/contacts/selectors";
+import { selectFoundContacts } from "../../redux/foundContacts/selectors";
 // class ContactsList extends Component {
 //   render() {
 //     console.log(this.props.contacts);
@@ -16,7 +19,9 @@ import { addContact } from "../../redux/contacts/contactsSlice";
 // }
 
 const ContactsList = ({ deleteFn }) => {
-  const { contacts, foundContacts } = useSelector((state) => state);
+  // const { contacts, foundContacts } = useSelector((state) => state);
+  const contacts = useSelector(selectContacts);
+  const foundContacts = useSelector(selectFoundContacts);
   console.log(useSelector((state) => state));
   const dispatch = useDispatch();
   // useEffect(() => {
@@ -45,10 +50,13 @@ const ContactsList = ({ deleteFn }) => {
   // useEffect(() => {
   //   console.log(foundContacts);
   // }, []);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, []);
   return (
     <ul className="flex justify-center gap-10 items-center">
       {foundContacts.length === 0
-        ? contacts.contacts.map((contact) => (
+        ? contacts.map((contact) => (
             <Contact
               key={contact.id}
               contact={contact}
