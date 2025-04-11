@@ -2,6 +2,7 @@ import persistReducer from "redux-persist/es/persistReducer";
 import { contactsReducer } from "./contacts/contactsSlice";
 import { filterReducer } from "./filter/filterSlice";
 import { foundContactsReducer } from "./foundContacts/foundContactsSlice";
+import { userReducer } from "./user/userSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
@@ -48,6 +49,7 @@ export const store = configureStore({
     contacts: contactsReducer,
     filter: filterReducer,
     foundContacts: foundContactsReducer,
+    user: userReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({

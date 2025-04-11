@@ -1,13 +1,16 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import useAuthWithNavigate from "../../hooks/useAuthWithNavigate";
 
-axios.defaults.baseURL = "https://67c1fbec61d8935867e4f88a.mockapi.io/contacts";
+axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async (_, thunkAPI) => {
+  async (token, thunkAPI) => {
     try {
-      const resp = await axios.get("/");
+      const resp = await axios.get("contacts/", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       return resp.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -19,7 +22,9 @@ export const addContact = createAsyncThunk(
   "contacts/addContact",
   async (data, thunkAPI) => {
     try {
-      const resp = await axios.post("/", data);
+      const resp = await axios.post("contacts/", data.data, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      });
       return resp.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -31,7 +36,9 @@ export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   async (data, thunkAPI) => {
     try {
-      const resp = await axios.delete(`/${data.id}`);
+      const resp = await axios.delete(`contacts/${data.id}`, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      });
       return resp.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

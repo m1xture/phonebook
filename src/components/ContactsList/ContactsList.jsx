@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { addContact, fetchContacts } from "../../redux/contacts/operations";
 import { selectContacts } from "../../redux/contacts/selectors";
 import { selectFoundContacts } from "../../redux/foundContacts/selectors";
+import useAuth from "../../hooks/useAuth";
+import useAuthWithNavigate from "../../hooks/useAuthWithNavigate";
 // class ContactsList extends Component {
 //   render() {
 //     console.log(this.props.contacts);
@@ -22,7 +24,9 @@ const ContactsList = ({ deleteFn }) => {
   // const { contacts, foundContacts } = useSelector((state) => state);
   const contacts = useSelector(selectContacts);
   const foundContacts = useSelector(selectFoundContacts);
-  console.log(useSelector((state) => state));
+  const token = useAuthWithNavigate();
+
+  // console.log(useSelector((state) => state));
   const dispatch = useDispatch();
   // useEffect(() => {
   //   try {
@@ -51,8 +55,8 @@ const ContactsList = ({ deleteFn }) => {
   //   console.log(foundContacts);
   // }, []);
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, []);
+    dispatch(fetchContacts(token));
+  }, [dispatch, token]);
   return (
     <ul className="flex justify-center gap-10 items-center">
       {foundContacts.length === 0

@@ -5,6 +5,7 @@ import FindInput from "../FindInput/FindInput";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../redux/actions";
+import Logout from "../Logout/Logout";
 
 // class Wrapper extends Component {
 //   state = {
@@ -91,7 +92,7 @@ const Wrapper = () => {
   // const [filter, setFilter] = useState("");
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  
+
   // useEffect(() => {
   //   try {
   //     if (JSON.parse(localStorage.getItem("contacts"))) {
@@ -152,6 +153,7 @@ const Wrapper = () => {
   };
   return (
     <>
+      <Logout />
       <AddForm />
       <FindInput />
       <ContactsList />
